@@ -18,13 +18,13 @@ if (!$con)
 }
 mysql_select_db($pDatabase, $con);
 
-if (!isset($_GET['e']) || !isset($_GET['p']))
+if (!isset($_POST['e']) || !isset($_POST['p']))
 {
 	echo '{"error":"bad parameters"}';
 	exit();
 }
-$user = mysql_real_escape_string($_GET['e']);
-$pw = mysql_real_escape_string($_GET['p']);
+$user = mysql_real_escape_string($_POST['e']);
+$pw = mysql_real_escape_string($_POST['p']);
 $pw = md5(md5($pw));
 $ut = $pPrefix . "user";
 $res = mysql_query("SELECT * FROM $ut where email = '$user' and passwd = '$pw'");
