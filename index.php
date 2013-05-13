@@ -22,9 +22,11 @@ if (!$con)
 	die ("couldnt connect : " . mysql_error());
 }
 mysql_select_db($pDatabase, $con);
-if (strlen($_SERVER['REQUEST_URI']) == 7)
+$query = explode("?", $_SERVER['REQUEST_URI']);
+$queryUse = $query[0];
+if (strlen($queryUse) == 7)
 {
-	$q = mysql_real_escape_string(substr($_SERVER['REQUEST_URI'], 1, strlen($_SERVER['REQUEST_URI']) - 1));
+	$q = mysql_real_escape_string(substr($queryUse, 1, strlen($queryUse) - 1));
 	$res = mysql_query("select * from " . $pPrefix . "upload inner join " . $pPrefix . "user on " . $pPrefix . "upload.user_id=" . $pPrefix . "user.user_id where " . $pPrefix . "upload.access_name = '".$q."'");
 	while ($row = mysql_fetch_array($res))
 	{		
