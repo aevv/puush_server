@@ -22,10 +22,10 @@ the files required by puush are:
 * api/hist (optional)
 * api/thumb (very optional)
 * api/up
+* api/del
 
 additional files added for making a front end:
 
 * api/login
 * api/logout
-* api/delete
 * more to add
