@@ -11,12 +11,22 @@ if (!$con)
 	die ("couldnt connect : " . mysql_error());
 }
 mysql_select_db($pDatabase, $con);
+if (!isset($_POST['k']))
+{
+	echo "-1";
+	exit();
+}
 $key = mysql_real_escape_string($_POST['k']);
 
 $res = mysql_query("SELECT * FROM " . $pPrefix . "user WHERE api_key='".$key."'");
 $user_id = -1;
 $folder = "";
 $priv = 0;
+if (mysql_num_rows($res) == 0)
+{
+	echo "-1"; 
+	break;
+}
 while ($row = mysql_fetch_array($res))
 {
 	$user_id = $row['user_id'];
