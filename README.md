@@ -12,3 +12,20 @@ currently requires mod rewrite for viewing puushes
 * edit install.php to your configuration
 * either let it create a .htaccess or enable mod rewrite and comment the code that creates a .htaccess
 * delete install.php if it works
+
+
+## files
+
+the files required by puush are:
+
+* api/auth
+* api/hist (optional)
+* api/thumb (very optional)
+* api/up
+
+additional files added for making a front end:
+
+* api/login
+* api/logout
+* api/delete
+* more to add
