@@ -54,9 +54,16 @@ if (!is_dir($pUploadFolder . "users/$folder/"))
 {
 	mkdir($pUploadFolder . "users/$folder/");
 }
-$file = mysql_real_escape_string($_FILES["f"]["name"]);
-mysql_query("INSERT INTO $upload (name, time, user_id, access_name, private) VALUES ('$file', ".time().", $user_id, '$access', $priv)");
-$id = mysql_insert_id();
-move_uploaded_file($_FILES["f"]["tmp_name"], $pUploadFolder. "users/$folder/" . $id);
-echo "0,http://$pDomain/$access,$id,0";
+if (isset($_FILES["f"]))
+{
+	$file = mysql_real_escape_string($_FILES["f"]["name"]);
+	mysql_query("INSERT INTO $upload (name, time, user_id, access_name, private) VALUES ('$file', ".time().", $user_id, '$access', $priv)");
+	$id = mysql_insert_id();
+	move_uploaded_file($_FILES["f"]["tmp_name"], $pUploadFolder. "users/$folder/" . $id);
+	echo "0,http://$pDomain/$access,$id,0";
+}
+else
+{
+	echo "-1";
+}
 ?>
