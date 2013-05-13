@@ -17,7 +17,8 @@ if (isset($_POST['k']))
 }
 else
 {
-	$key = "";
+	echo "-2";
+	exit();
 }
 $res = mysql_query("SELECT * FROM " . $pPrefix . "upload inner join " . $pPrefix . "user on " . $pPrefix . "upload.user_id = " . $pPrefix . "user.user_id where " . $pPrefix . "user.api_key='".$key."' order by " . $pPrefix . "upload.time desc limit 5");
 $ret = "";
