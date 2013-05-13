@@ -27,7 +27,7 @@ $queryUse = $query[0];
 if (strlen($queryUse) == 7)
 {
 	$q = mysql_real_escape_string(substr($queryUse, 1, strlen($queryUse) - 1));
-	$res = mysql_query("select * from " . $pPrefix . "upload inner join " . $pPrefix . "user on " . $pPrefix . "upload.user_id=" . $pPrefix . "user.user_id where " . $pPrefix . "upload.access_name = '".$q."'");
+	$res = mysql_query("select * from " . $pPrefix . "upload inner join " . $pPrefix . "user on " . $pPrefix . "upload.user_id=" . $pPrefix . "user.user_id where " . $pPrefix . "upload.access_name = '".$q."' and private = 0");
 	while ($row = mysql_fetch_array($res))
 	{		
 		mysql_query("UPDATE " . $pPrefix . "upload SET views=". ($row['views']+1)." WHERE upload_id=".$row['upload_id']);
