@@ -20,7 +20,9 @@ else
 	echo "-2";
 	exit();
 }
-$res = mysql_query("SELECT * FROM " . $pPrefix . "upload inner join " . $pPrefix . "user on " . $pPrefix . "upload.user_id = " . $pPrefix . "user.user_id where " . $pPrefix . "user.api_key='".$key."' order by " . $pPrefix . "upload.time desc limit 5");
+$user = $pPrefix."user";
+$upload = $pPrefix."upload";
+$res = mysql_query("SELECT * FROM $upload inner join $user on $upload.user_id = $user.user_id where $user.api_key='$key' order by $upload.time desc limit 5");
 $ret = "";
 $first = true;
 while ($row = mysql_fetch_array($res))
@@ -30,7 +32,7 @@ while ($row = mysql_fetch_array($res))
 		$first = false;
 		$ret = $ret . "0\n";
 	}
-	$ret = $ret . $row['upload_id'].",". date("Y-m-d H:i:s", $row['time']) .",http://" . $pDomain . "/".$row['access_name'].",".$row['name'].",".$row['views'].",0\n";
+	$ret = $ret . $row['upload_id'].",". date("Y-m-d H:i:s", $row['time']) .",http://$pDomain/".$row['access_name'].",".$row['name'].",".$row['views'].",0\n";
 }
 if ($ret == "")
 {
