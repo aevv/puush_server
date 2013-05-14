@@ -30,4 +30,4 @@ additional files added for making a front end:
 * api/login
 * api/logout
 * api/private
-* more to add
+* api/get
