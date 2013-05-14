@@ -23,6 +23,7 @@ the files required by puush are:
 * api/thumb (very optional)
 * api/up
 * api/del
+* dl/puush-win.txt (used to check for updates, contains latest revision)
 
 additional files added for making a front end:
 
