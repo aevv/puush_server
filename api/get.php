@@ -19,11 +19,11 @@ if (!$con)
 }
 mysql_select_db($pDatabase, $con);
 
-if (!isset($_POST['a']))
+if (!isset($_GET['a']))
 {
 	exit();
 }
-$access = mysql_real_escape_string($_POST['a']);
+$access = mysql_real_escape_string($_GET['a']);
 $user = $pPrefix."user";
 $upload = $pPrefix."upload";
 

@@ -84,13 +84,13 @@ if (!isset($_SESSION['k']))
 }
 
 
-if (!isset($_GET['a']))
+if (!isset($_POST['a']))
 {
 	echo '{"status": "error", "message": "bad parameters"}';
 	exit();
 }
 
-$access = mysql_real_escape_string($_GET['a']);
+$access = mysql_real_escape_string($_POST['a']);
 $key = $_SESSION['k'];
 $user = $pPrefix."user";
 $upload = $pPrefix."upload";
