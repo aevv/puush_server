@@ -17,12 +17,13 @@ if (!$con)
 {
 	die ("couldnt connect : " . mysql_error());
 }
+mysql_select_db($pDatabase, $con);
 
-if (!isset($_GET['a']))
+if (!isset($_POST['a']))
 {
 	exit();
 }
-$access = mysql_real_escape_string($_GET['a']);
+$access = mysql_real_escape_string($_POST['a']);
 $user = $pPrefix."user";
 $upload = $pPrefix."upload";
 

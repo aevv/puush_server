@@ -24,9 +24,9 @@ mysql_select_db($pDatabase, $con);
 
 $key = mysql_real_escape_string($_SESSION['k']);
 
-if (isset($_GET['a']))
+if (isset($_POST['a']))
 {
-	$access = mysql_real_escape_string($_GET['a']);
+	$access = mysql_real_escape_string($_POST['a']);
 	$user = $pPrefix."user";
 	$upload = $pPrefix."upload";
 	$res = mysql_query("SELECT * FROM $upload inner join $user on $upload.user_id = $user.user_id where $user.api_key = '$key' and $upload.access_name = '$access'");
