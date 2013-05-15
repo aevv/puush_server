@@ -50,8 +50,11 @@ else
 $exists = false;
 while ($row = mysql_fetch_array($res))
 {
-	$exists = true;
-	echo "1,".$row['api_key'].","."2020-09-09,0";
+	$exists = true;	
+	$io = popen('/usr/bin/du -sb '.$pUploadFolder. "users/" . $row['folder'] ."/", 'r');
+    $size = intval(fgets($io,80));
+    pclose($io);
+	echo "1,".$row['api_key'].","."2020-09-09,$size";
 	exit();
 }
 if (!$exists && $canMake && ($email != "") && ($passwd != ""))

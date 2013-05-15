@@ -60,7 +60,10 @@ if (isset($_FILES["f"]))
 	mysql_query("INSERT INTO $upload (name, time, user_id, access_name, private) VALUES ('$file', ".time().", $user_id, '$access', $priv)");
 	$id = mysql_insert_id();
 	move_uploaded_file($_FILES["f"]["tmp_name"], $pUploadFolder. "users/$folder/" . $id);
-	echo "0,http://$pDomain/$access,$id,0";
+    $io = popen('/usr/bin/du -sb '.$pUploadFolder. "users/$folder/", 'r');
+    $size = intval(fgets($io,80));
+    pclose($io);
+	echo "0,http://$pDomain/$access,$id,$size";
 }
 else
 {
