@@ -3,7 +3,7 @@ session_start();
 
 if (!isset($_SESSION['k']))
 {
-	echo '{"error":"not logged in"}';
+	echo '{"status": "error", "message": "not logged in"}';
 	exit();
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST['a']))
 	$res = mysql_query("SELECT * FROM $upload inner join $user on $upload.user_id = $user.user_id where $user.api_key = '$key' and $upload.access_name = '$access'");
 	if (mysql_num_rows($res) == 0)
 	{
-		echo '{"error":"no file"}';
+		echo '{"status": "error", "message": "no file"}';
 		exit();
 	}
 	while ($row = mysql_fetch_array($res))
@@ -41,12 +41,12 @@ if (isset($_POST['a']))
 		if ($private == 0)
 		{
 			mysql_query("UPDATE $upload SET private = 1 WHERE access_name = '$access'");
-			echo '{"success":"private"}';
+			echo '{"status": "success", "message": "private"}';
 		}
 		else
 		{
 			mysql_query("UPDATE $upload SET private = 0 WHERE access_name = '$access'");
-			echo '{"success":"public"}';
+			echo '{"status": "success", "message": "public"}';
 		}
 	}
 }

@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['k']))
 {
-	echo '{"error":"not logged in"}';
+	echo '{"status": "error", "message": "not logged in"}';
 	exit();
 }
 

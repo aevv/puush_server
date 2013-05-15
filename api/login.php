@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['k']))
 {
-	echo '{"error":"already logged in"}';
+	echo '{"status": "error", "message": "already logged in"}';
 	exit();
 }
 if (!is_dir("../puushsettings"))
@@ -20,7 +20,7 @@ mysql_select_db($pDatabase, $con);
 
 if (!isset($_POST['e']) || !isset($_POST['p']))
 {
-	echo '{"error":"bad parameters"}';
+	echo '{"status": "error", "message": "bad parameters"}';
 	exit();
 }
 $user = mysql_real_escape_string($_POST['e']);
@@ -34,11 +34,11 @@ if (mysql_num_rows($res) == 1)
 	{
 		$_SESSION['k'] = $row['api_key'];
 		$_SESSION['e'] = $row['email'];
-		echo '{"success":"log in"}';
+		echo '{"status": "success", "message": "log in"}';
 	}
 }
 else
 {
-	echo '{"error":"invalid details"}';
+	echo '{"status": "error", "message": "invalid details"}';
 }
 ?>

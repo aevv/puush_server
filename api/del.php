@@ -79,14 +79,14 @@ session_start();
 
 if (!isset($_SESSION['k']))
 {
-	echo '{"error":"not logged in"}';
+	echo '{"status": "error", "message": "not logged in"}';
 	exit();
 }
 
 
 if (!isset($_GET['a']))
 {
-	echo '{"error":"bad parameters"}';
+	echo '{"status": "error", "message": "bad parameters"}';
 	exit();
 }
 
@@ -97,7 +97,7 @@ $upload = $pPrefix."upload";
 $res = mysql_query("SELECT * FROM $upload inner join $user on $upload.user_id = $user.user_id where $user.api_key = '$key' and $upload.access_name = '$access'");
 if (mysql_num_rows($res) == 0)
 {
-	echo '{"error":"no file"}';
+	echo '{"status": "error", "message": "no file"}';
 	exit();
 }
 while ($row = mysql_fetch_array($res))
@@ -107,7 +107,7 @@ while ($row = mysql_fetch_array($res))
 }
 if (!file_exists($pUploadFolder . 'users/'.$folder.'/'.$id))
 {
-	echo '{"error":"file already deleted"}';
+	echo '{"status": "error", "message": "file already deleted"}';
 	mysql_query("DELETE FROM $upload WHERE access_name='$access'");
 	exit();
 }
@@ -116,11 +116,11 @@ else
 	if (unlink($pUploadFolder . 'users/'.$folder.'/'.$id))
 	{
 		mysql_query("DELETE FROM $upload WHERE access_name='$access'");
-		echo '{"success":"file deleted"}';
+		echo '{"status": "success", "message": "file deleted"}';
 	}
 	else
 	{
-		echo '{"error":"file could not be deleted"}';
+		echo '{"status": "error", "message": "file could not be deleted"}';
 	}
 }
 ?>

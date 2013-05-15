@@ -3,10 +3,10 @@ session_start();
 if (isset($_SESSION['k']))
 {
 	unset($_SESSION['k']);
-	echo '{"success":"logged out"}';
+	echo '{"status": "success", "message": "logged out"}';
 }
 else
 {
-	echo '{"error":"not logged in"}';
+	echo '{"status": "error", "message": "not logged in"}';
 }
 ?>
