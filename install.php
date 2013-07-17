@@ -98,7 +98,7 @@ Options +FollowSymLinks +Indexes
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule .* /index.php [L]"
+RewriteRule .* /index.php [L]");
 	fclose($rewrite);
 	
 	//this could do with improving, returns true if files existed but couldn't be written to?
